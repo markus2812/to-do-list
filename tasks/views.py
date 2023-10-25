@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import View, generic
 from django.shortcuts import redirect
@@ -44,13 +44,15 @@ class TaskDeleteView(generic.DeleteView):
     success_url = reverse_lazy("tasks:index")
 
 
-def toggle_task(request, task_id):
-    if request.method == "POST" and "toggle" in request.POST:
-        task = Task.objects.get(pk=task_id)
+class ToggleTaskView(View):
+    def post(self, request, task_id):
+        task = get_object_or_404(Task, pk=task_id)
         task.is_completed = not task.is_completed
         task.save()
+        return redirect('tasks:index')
 
-    return redirect("tasks:index")
+    def get(self, request, task_id):
+        return redirect('tasks:index')
 
 
 class TagListView(generic.ListView):
