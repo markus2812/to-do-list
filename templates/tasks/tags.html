@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1 class="mb-4 mt-2 text-center">Tags
+    <a style="float: right" href="{% url 'tasks:create-tag' %}" class="btn btn-primary float-right link-to-page mt-3">
+    Add tag
+  </a></h1>
+
+  {% if tag_list %}
+    <table class="table">
+      <thead>
+      <tr>
+        <th><strong>Name</strong></th>
+        <th><strong>Update</strong></th>
+        <th><strong>Delete</strong></th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for tag in tag_list %}
+        <tr>
+          <td><strong>{{ tag.name }}</strong></td>
+          <td>
+            <a class="btn btn-secondary" href="{% url 'tasks:update-tag' tag.id %}">Update</a>
+          </td>
+          <td>
+            <a class="btn btn-secondary" href="{% url 'tasks:delete-tag' tag.id %}">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+
+  {% else %}
+    <p>There are no tasks in the TODO List.</p>
+  {% endif %}
+{% endblock %}
