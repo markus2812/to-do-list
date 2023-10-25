@@ -1,0 +1,12 @@
+.task-divider {
+  border-bottom: 1px solid #ccc; /* Стиль та колір полоси */
+  padding-bottom: 10px; /* Відстань від полоси до наступного завдання */
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.custom-undo-button {
+    background-color: rgb(128, 128, 128);
+}
