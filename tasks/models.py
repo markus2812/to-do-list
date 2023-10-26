@@ -16,7 +16,7 @@ class Task(models.Model):
         null=True, blank=True, help_text="Enter the deadline date as you wish!"
     )
     is_completed = models.BooleanField(default=False, editable=True)
-    tags = models.ManyToManyField(Tag)
+    tags = models.ManyToManyField(Tag, related_name="tasks")
 
     def __str__(self):
         return self.title
